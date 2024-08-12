@@ -1,0 +1,41 @@
+
+db.createCollection("Students")
+
+db.Students.insertOne({Name : "Shashank", Age : 20, "Branch" : "AI-DS", Gender : "Male"})
+
+db.Students.insertMany([
+{ "Name" : "Sai Shashank", "Age" : 23, "Branch" : "AI-ML", "Gender" : "Male"},
+{"Name" : "Diya", "Age" : 21, "Branch" : "CS", "Gender" : "Female"},
+{"Name" : "Arvind", "Age" : 30, "Branch" : "AI-DS","Gender" : "Male"},
+{"Name" : "Ashwin", "Age" : 20, "Branch" : "AI-ML", "Gender" : "Male"}
+])
+
+
+db.Students.find({})
+
+db.Students.find({ Age: { $gt: 22 } })
+
+
+db.Students.updateOne({Name : Arvind},{$set :{age : 25}}) 
+
+db.Students.updateMany(
+    { Branch: "AI-ML" },  
+    { $set: { Branch: "AI-DS" } } 
+)
+
+db.Students.deleteOne({Name: "Shashank"})
+
+ db.Students.deleteMany({Gender: "Male"})
+
+
+db.Students.find({},{Name:1, Age:1, _id:0})
+
+
+db.Students.find({ Age: 25 })
+
+db.Students.find({ $and: [{ Age: { $gt: 20 } }, { Gender: "Male" }] })
+
+db.Students.find({ $or: [{ Age: { $gt: 30 } }, { Gender: "Female" }] })
+
+
+

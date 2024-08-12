@@ -1,0 +1,106 @@
+
+db.createCollection("students")
+
+
+db.students.insertMany([
+{
+'Student_id' : 1,
+'Name' : 'Student 1',
+'Age' : 22,
+'City' : 'New York',
+'tags' : ['tag1' , 'tag2' , 'tag3']
+},
+{
+'Student_id' : 2,
+'Name' : 'Student 2',
+'Age' : 25,
+'City' : 'New York',
+'tags' : ['tag1' , 'tag2' , 'tag3']
+},
+
+{
+'Student_id' : 3,
+'Name' : 'Student 3',
+'Age' : 30,
+'City' : 'Los Angeles',
+'tags' : ['tag1' , 'tag2' , 'tag3']
+},
+
+{
+'Student_id' : 4,
+'Name' : 'Student 4',
+'Age' : 40,
+'City' : 'New York',
+'tags' : ['tag1' , 'tag2' , 'tag3']
+},
+
+{
+'Student_id' : 5,
+'Name' : 'Student 5',
+'Age' : 46,
+'City' : 'New York',
+'tags' : ['tag1' , 'tag2' , 'tag3']
+},
+
+{
+'Student_id' : 6,
+'Name' : 'Student 6',
+'Age' : 50,
+'City' : 'Los Angeles',
+'tags' : ['tag1' , 'tag2' , 'tag3']
+},
+
+{
+'Student_id' : 7,
+'Name' : 'Student 7',
+'Age' : 20,
+'City' : 'Chicago',
+'tags' : ['tag1' , 'tag2' , 'tag3']
+},
+{
+'Student_id' : 8,
+'Name' : 'Student 8',
+'Age' : 28,
+'City' : 'New York',
+'tags' : ['tag1' , 'tag2' , 'tag3']
+}
+])
+
+	1. Unique Index
+db.students.createIndex({ Student_id: 1 }, { unique: true })
+A unique index ensures that the indexed field does not contain duplicate values.
+
+	2. Sparse Index
+db.students.createIndex({ City: 1 }, { sparse: true })
+A sparse index only includes documents that contain the indexed field, ignoring documents where the field is missing.
+
+	3. Compound Index :
+db.students.createIndex({ City: 1, Age: 1 })
+A compound index indexes multiple fields within a single index.
+
+	4. Multivalued key:
+db.students.createIndex({ tags: 1})
+A multikey index is created on an array field, indexing each element of the array.
+
+
+
+B) Demonstrate Optimization of queries using indexes
+
+//finds the student with highest age
+db.students.find({}).sort({Age : -1}).limit(1);
+
+//Explain the query Plan
+db.students.find({}).sort({Age : -1}).limit(1).explain();
+
+							
+
+
+
+									
+db.students.find({}).sort({Age : -1}).limit(1).explain('executionStats');
+
+db.students.createIndex({Age : -1})
+
+db.students.find({}).sort({Age : -1}).limit(1).explain('executionStats').executionStats.totalDocsExamined;
+
+db.students.find({}).sort({Age : -1}).limit(1).explain('executionStats').executionStats.executionTimeMillies;

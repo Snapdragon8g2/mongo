@@ -1,0 +1,17 @@
+db.createCollection("Students")
+
+db.Students.insertOne({Name : "Shashank", Age : 20, "Branch" : "AI-DS", Gender : "Male"})
+
+db.Students.insertMany([
+{ "Name" : "Sai Shashank", "Age" : 23, "Branch" : "AI-ML", "Gender" : "Male"},
+{"Name" : "Diya", "Age" : 21, "Branch" : "CS", "Gender" : "Female"},
+{"Name" : "Arvind", "Age" : 30, "Branch" : "AI-DS","Gender" : "Male"},
+{"Name" : "Ashwin", "Age" : 20, "Branch" : "AI-ML", "Gender" : "Male"}
+])
+
+db.Students.find({}, { Name: 1, Age: 1, _id: 0 })
+
+db.Students.find({}, { Name: 1, Age: 1, _id: 0 }).limit(5)
+
+
+

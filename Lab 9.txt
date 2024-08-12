@@ -1,0 +1,18 @@
+db.catalog.countDocuments()
+
+Step 2:
+db.catalog.createIndex({name: "text", genre: "text"})
+
+Step 3:
+db.catalog.find({$text: {$search: "maga"}})
+
+db.catalog.find({$text: {$search: "raju"}})
+
+Step 4:
+db.catalog.find({$text: {$search: "tappida Maga"}})
+
+db.catalog.createIndex({ name: "text", description: "text" })
+
+db.catalog.find({ $text: { $search: "crime romance -action" }, year:2021 } )
+
+db.catalog.find({$text: {$search: "maga -"da maga""}})
